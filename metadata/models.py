@@ -1,7 +1,8 @@
+import json
 from django.db import models
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes import generic
-from django.utils import simplejson
+# from django.utils import simplejson
 
 
 class MetaDataManager(models.Manager):
@@ -74,7 +75,7 @@ class MetaData(models.Model):
         return (self.name, self.value)
 
     def __repr__(self):
-        return simplejson.dumps(dict(
+        return json.dumps(dict(
             name=self.name,
             value=self.value,
             content_type=self.content_type.name,
