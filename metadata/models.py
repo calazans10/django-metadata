@@ -3,14 +3,16 @@ from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes import generic
 from django.utils import simplejson
 
+
 class MetaDataManager(models.Manager):
     '''This manager allow to with MetaData.objects as a Dict (useful for
     templates).'''
+
     def __getitem__(self, key):
         '''Return the value of metadata or None if not found'''
         try:
             return self.get_query_set().get(name=key).value
-        except MetaData.DoesNotExist, e:
+        except MetaData.DoesNotExist:
             return None
 
     def __setitem__(self, key, value):
@@ -18,7 +20,7 @@ class MetaDataManager(models.Manager):
             metadata = self.instance.metadata.get(name=key)
             metadata.value = value
             metadata.save()
-        except MetaData.DoesNotExist, e:
+        except MetaData.DoesNotExist:
             metadata = self.instance.metadata.create(name=key, value=value)
 
     def __contains__(self, key):
@@ -27,9 +29,9 @@ class MetaDataManager(models.Manager):
                 return True
             else:
                 return False
-        except IndexError,e:
+        except IndexError:
             return False
-        
+
     def __iter__(self):
         return self.iteritems()
 
@@ -66,10 +68,11 @@ class MetaData(models.Model):
     content_object = generic.GenericForeignKey('content_type', 'object_id')
 
     objects = MetaDataManager()
+
     def as_tuple(self):
         '''Return a tuple in the format (name, value)'''
         return (self.name, self.value)
-        
+
     def __repr__(self):
         return simplejson.dumps(dict(
             name=self.name,
@@ -77,4 +80,3 @@ class MetaData(models.Model):
             content_type=self.content_type.name,
             object_id=self.object_id,
         ))
-
