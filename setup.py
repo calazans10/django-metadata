@@ -2,11 +2,9 @@ import os
 from setuptools import setup
 
 
-DIRNAME = os.path.dirname(__file__)
-ABSPATH = os.path.abspath(__file__)
-README = open(os.path.join(DIRNAME, 'README.md')).read()
+README = open(os.path.join(os.path.dirname(__file__), 'README.md')).read()
 
-os.chdir(os.path.normpath(os.path.join(ABSPATH, os.pardir)))
+os.chdir(os.path.normpath(os.path.join(os.path.abspath(__file__), os.pardir)))
 
 setup(
     name='django-metadata',
@@ -32,4 +30,7 @@ can add metadata to any of your models''',
         "Programming Language :: Python :: 2.7",
         "Programming Language :: Python :: 3.3",
     ],
+    install_requires=[
+        'django>=1.5',
+    ]
 )
