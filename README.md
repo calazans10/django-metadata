@@ -9,22 +9,11 @@ If you have a `Product` model and your instance is about Digital Cameras, you ma
 
 ## Install
 
-Clone django-metadata somewhere:
+Put this on your requirements.txt:
 
-````bash
-git clone git://github.com/rafaelsdm/django-metadata.git
+````
+git+https://github.com/calazans10/django-metadata.git#egg=django-metadata
 ```
-
-
-Add `django-metadata` into `PYTHONPATH`:
-
-```bash
-export PYTHONPATH=$PYTHONPATH:/somewhere/django-metadata
-```
-
-Remember to replace `/somewhere/` to the path where you cloned the code.
-
-You can also add the line above into your `~/.bashrc`.
 
 ## Using
 
