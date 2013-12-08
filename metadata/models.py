@@ -60,8 +60,8 @@ class MetaDataManager(models.Manager):
 
 
 class MetaData(models.Model):
-    name = models.CharField(max_length=256, db_index=True)
-    value = models.CharField(max_length=256, db_index=True)
+    name = models.CharField('Nome', max_length=256, db_index=True)
+    value = models.CharField('Valor', max_length=256, db_index=True)
 
     content_type = models.ForeignKey(ContentType)
     object_id = models.PositiveIntegerField()
@@ -80,3 +80,7 @@ class MetaData(models.Model):
             content_type=self.content_type.name,
             object_id=self.object_id,
         ))
+
+    class Meta:
+        verbose_name = 'Metadado'
+        verbose_name_plural = 'Metadados'
