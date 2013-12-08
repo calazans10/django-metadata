@@ -2,7 +2,6 @@ import json
 from django.db import models
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes import generic
-# from django.utils import simplejson
 
 
 class MetaDataManager(models.Manager):
@@ -81,6 +80,9 @@ class MetaData(models.Model):
             content_type=self.content_type.name,
             object_id=self.object_id,
         ))
+
+    def __str__(self):
+        return self.name + ": " + self.value
 
     class Meta:
         verbose_name = 'Metadado'
