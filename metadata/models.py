@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import json
 from django.db import models
 from django.contrib.contenttypes.models import ContentType
@@ -81,7 +82,7 @@ class MetaData(models.Model):
             object_id=self.object_id,
         ))
 
-    def __str__(self):
+    def __unicode__(self):
         return self.name + ": " + self.value
 
     class Meta:
