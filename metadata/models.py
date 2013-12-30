@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 import json
 from django.db import models
-from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes import generic
+from django.contrib.contenttypes.models import ContentType
 
 
 class MetaDataManager(models.Manager):
@@ -44,8 +44,8 @@ class MetaDataManager(models.Manager):
         return list(self.iterkeys())
 
     def itervalues(self):
-        # This way we can zip iterkeys and itervalues and retrieve the correct
-        # information
+        '''This way we can zip iterkeys and itervalues and retrieve the correct
+        information'''
         for metadata in self.get_query_set().order_by('name'):
             yield metadata.value
 
@@ -70,6 +70,10 @@ class MetaData(models.Model):
 
     objects = MetaDataManager()
 
+    class Meta:
+        verbose_name = u'Metadado'
+        verbose_name_plural = u'Metadados'
+
     def as_tuple(self):
         '''Return a tuple in the format (name, value)'''
         return (self.name, self.value)
@@ -84,7 +88,3 @@ class MetaData(models.Model):
 
     def __unicode__(self):
         return self.name + ": " + self.value
-
-    class Meta:
-        verbose_name = u'Metadado'
-        verbose_name_plural = u'Metadados'
