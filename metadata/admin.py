@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from metadata.models import MetaData
 from django.contrib.contenttypes import generic
+from metadata.models import MetaData
 
 
 class MetaDataTabularInline(generic.GenericTabularInline):
