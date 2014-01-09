@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 import json
 from django.db import models
-from django.contrib.contenttypes import generic
 from django.contrib.contenttypes.models import ContentType
+from django.contrib.contenttypes import generic
 
 
 class MetaDataManager(models.Manager):
